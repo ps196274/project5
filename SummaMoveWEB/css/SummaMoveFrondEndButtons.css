@@ -1,0 +1,19 @@
+.parent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    } 
+
+.ButtonContainer { 
+    grid-area: 2 / 4 / 3 / 5; 
+} 
+
+button{
+    background-color: lightblue;
+    border-color: black;
+    border-width: 3px;
+    padding: 15px;
+    float: right;
+}
