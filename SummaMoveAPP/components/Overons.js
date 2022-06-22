@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 function App() {
   return (
     <View style={styles.container}>
-      <Text>over ons</Text>
+      <Text>Hallo wij zijn SummaMove</Text>
       <StatusBar style="auto" />
     </View>
   );

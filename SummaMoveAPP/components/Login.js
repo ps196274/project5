@@ -6,14 +6,14 @@ function App({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.tekst}>Meld je aan om je prestaties te kunnen bekijken{"\n"}</Text>
       <TextInput style={styles.input} placeholder="Gebruikersnaam"></TextInput>
-      <TextInput style={styles.input} placeholder="Wachtwoord"></TextInput>
+      <TextInput secureTextEntry={true} style={styles.input} placeholder="Wachtwoord"></TextInput>
       <Text>{"\n"}</Text>
       <StatusBar style="auto" />
       <Button style={ styles.login } onPress={() => navigation.navigate('LoadPrestaties')} title="Login"/>
     </View>
   );
 }
-
+  
 const styles = StyleSheet.create({
   container: {
     flex: 1,
