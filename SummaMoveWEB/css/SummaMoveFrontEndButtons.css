@@ -11,7 +11,7 @@
 } 
 
 button{
-    background-color: lightblue;
+    background: linear-gradient(to bottom, #66ccff 0%, #ccccff 100%);
     border-color: black;
     border-width: 3px;
     padding: 15px;

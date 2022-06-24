@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/SummaMoveFrontEndLogin.css">
     <title>SummaMove Beheer login</title>
 </head>
 <body>
-    <H1>Beheer</H1>
+    <div class="parent">
+        <div class="div1"> 
+            <h1><img src="/images/Logo-SummaMove.png">Beheer</h1>
+            
+        </div>
+        <div class="div2">
+            <div>
+                <p>Gebruikersnaam<br><input id="gebruikersnaam"></p>
+                <p>Wachtwoord<br><input id="wachtwoord"></p>
+                <button onclick="GetUserData()">Login</button>
 
-    <div>
-        <p>Gebruikersnaam<br><input id="gebruikersnaam"></p>
-        <p>Wachtwoord<br><input id="wachtwoord"></p>
-        <button onclick="GetUserData()">Login</button>\
-        <a href="SummaMoveFrondEndHome.html">home</a>
-    </div>
+            </div>
+        </div>
+        </div> 
 </body>
 <script>
     const GetUserData = () => {
