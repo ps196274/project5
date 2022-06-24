@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Oefening extends Model
 {
     use HasFactory;
+    protected $table = 'oefeningen';
+    protected $fillable = ["id", "naam"];
 }

@@ -13,8 +13,9 @@ class CreateOefeningTable extends Migration
      */
     public function up()
     {
-        Schema::create('oefening', function (Blueprint $table) {
+        Schema::create('oefeningen', function (Blueprint $table) {
             $table->id();
+            $table->text('name',);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateOefeningTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('oefening');
+        Schema::dropIfExists('oefeningen');
     }
 }
