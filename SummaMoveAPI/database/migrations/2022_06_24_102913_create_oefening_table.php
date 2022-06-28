@@ -19,7 +19,6 @@ class CreateOefeningTable extends Migration
             $table->text('beschrijving_nl',);
             $table->text('naam_en',);
             $table->text('beschrijving_en',);
-            $table->timestamps();
         });
     }
 

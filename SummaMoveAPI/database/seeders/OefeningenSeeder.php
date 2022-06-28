@@ -30,8 +30,6 @@ class oefeningenSeeder extends Seeder
 4.	Make sure your knees are at a 90-degree angle.
 5.	Go back up slowly and repeat 5 times.
 ',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::tomorrow(),
             ],
             [
                 'naam_nl' => 'Push-up',
@@ -46,8 +44,6 @@ class oefeningenSeeder extends Seeder
 3.	Lower down slowly and touch the floor with your chest.
 4.	Go back up and repeat 5 times.
 ',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::tomorrow(),
             ],
             [
                 'naam_nl' => 'Dip',
@@ -68,8 +64,6 @@ class oefeningenSeeder extends Seeder
 6.	Brace your elbows for a moment.
 7.	Repeat from step 2.
 ',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::tomorrow(),
             ],
             [
                 'naam_nl' => 'Plank',
@@ -86,8 +80,6 @@ class oefeningenSeeder extends Seeder
 4.	Try to stay straight as much as possible.
 5.	Hold this position for 30 seconds.
 ',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::tomorrow(),
             ],
             [
                 'naam_nl' => 'Paardentrap',
@@ -102,8 +94,6 @@ class oefeningenSeeder extends Seeder
     3.	Keep your leg straight for a few seconds, then return to the original position.
     4.	Now repeat this exercise with your other leg.
 ',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::tomorrow(),
             ],
             [
                 'naam_nl' => 'Mountain climber',
@@ -118,8 +108,6 @@ class oefeningenSeeder extends Seeder
 3.	Always bring 1 leg towards your arm.
 4.	Repeat this exercise 10 times.
 ',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::tomorrow(),
             ],
             [
                 'naam_nl' => 'Burpee',
@@ -136,8 +124,6 @@ class oefeningenSeeder extends Seeder
 4.	Place your hands on the floor first on the landing and then return to your push-up position.
 5.	Now repeat the exercise.
 ',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::tomorrow(),
             ],
             [
                 'naam_nl' => 'Lunge',
@@ -156,8 +142,6 @@ class oefeningenSeeder extends Seeder
 5.	Now do this with your other leg.
 6.	Repeat this 10 times.
 ',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::tomorrow(),
             ],
             [
                 'naam_nl' => 'Wall sit',
@@ -172,8 +156,6 @@ class oefeningenSeeder extends Seeder
 3.	Keep tension in your thighs, abs and make sure to keep your back straight.
 4.	Hold this position until the time is up.
 ',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::tomorrow(),
             ],
             [
                 'naam_nl' => 'Crunch',
@@ -188,8 +170,6 @@ class oefeningenSeeder extends Seeder
 3.	In that position, slowly lift your shoulders towards your knees.
 4.	Now lower back, but do not touch the floor, repeat this exercise 10 times.
 ',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::tomorrow(),
             ],
         ]);
     }
