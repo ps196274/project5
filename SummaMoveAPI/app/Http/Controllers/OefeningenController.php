@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\oefening;
 use Illuminate\Http\Request;
 
 class OefeningenController extends Controller
@@ -13,7 +14,10 @@ class OefeningenController extends Controller
      */
     public function index()
     {
-        //
+        if ($request->has('naam'))
+            return oefening::where('name', 'like', '%'.$request->name.'%')->get();
+        if ($request->has('sort')) return oefening::orderBy($request->sort)->get();
+        return oefening::All();
     }
 
     /**
@@ -34,7 +38,7 @@ class OefeningenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return oefening::create($request->all());
     }
 
     /**
@@ -45,7 +49,7 @@ class OefeningenController extends Controller
      */
     public function show($id)
     {
-        //
+        return $oefening;
     }
 
     /**
@@ -68,7 +72,8 @@ class OefeningenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $oefeningen->update($request->all());
+        return $oefeningen;
     }
 
     /**
@@ -79,6 +84,6 @@ class OefeningenController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $oefening->delete();
     }
 }
