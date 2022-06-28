@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/SummaMoveFrontEndLogin.css">
+    <link rel="stylesheet" href="css/SummaMoveFrontEnd.css">
+    <link rel="icon" href="images/Logo-SummaMove.ico">
+    <title>SummaMove Beheer</title>
+</head>
+<body>
+    <div class="parent">
+        <div id="navbar" style="visibility: hidden;">
+            <img src="images/Logo-SummaMove.png">
+            <button onclick="LaadHome()">Home</button>
+            <button onclick="LaadGebruikers()">Gebruikers</button>
+            <button onclick="LaadOefeningen()">Oefeningen</button>
+            <button onclick="LaadPrestaties()">Prestaties</button>
+         </div>
+
+        <div id="LoginScreen" style="visibility: visible;">
+            <div>
+                <p>Gebruikersnaam<br><input id="gebruikersnaam"></p>
+                <p>Wachtwoord<br><input id="wachtwoord"></p>
+                <button onclick="LoginFunction()">Login</button>
+            </div>
+        </div>
+        
+        <div id="TableGebruikers" style="visibility: hidden;">
+            <table id="InhoudTabelGebruikers">
+                <tr>
+                    <th>Id</th>
+                    <th>Gebruikersnaam</th>
+                </tr>
+                <tbody id="tabelInhoudGebruikers" />
+            </table>
+        </div>
+        <div id="TableOefeningen" style="visibility: hidden;">
+            <table id="InhoudTabelOefeningen">
+                <tr>
+                    <th>Id</th>
+                    <th>Oefeningnaam</th>
+                    <th>Beschrijving</th>
+                </tr>
+                <tbody id="tabelInhoudOefeningen" />
+            </table>
+        </div>
+        <div id="GebruikerCreateContainer" style="visibility: hidden;">
+            <p>Gebruikersnaam</p>
+            <input><br><br>
+            <button onclick="CreateGebruikers()">Aanmaken</button>
+        </div>
+        <div id="OefeningCreateContainer" style="visibility: hidden;">
+            <label>Oefeningnaam: <input type="text" id="oefeningnaam"></label><br><br>
+            <label>Beschrijving:  <input type="text" id="beschrijving"></label><br><br>
+            <button onclick="CreateOefeningen()">Aanmaken</button>
+        </div>
+        <div id="navfooter" style="visibility: hidden;">
+            <footer>@Ruben van Gastel, Maikel Colin, Ivan Hau, Shuceyb Malin</footer>
+          </div>
+        </div> 
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const apiBasis = "http://127.0.0.1:8000/api/"
+	const apiGebruikers = apiBasis + "gebruikers/"
+	const apiOefeningen = apiBasis + "oefeningen/"
+	const apiLogin = apiBasis + "login/"
+
+    let oefeningen = []
+    let json = null
+    let access_token = undefined
+
+    const LaadOefeningenTabel = async () => {
+		console.log('Laad gegevens')
+		const response = await axios.get(apiOefeningen)
+		json = await response.data
+		//access_token = json.access_token	
+	}
+    const toon = () => {
+		let tabelInhoudOefeningen = ''
+		json.map(el => tabelInhoudOefeningen += `<tr><td>${el.id}</td><td>${el.naam_nl}</td><td>${el.beschrijving_nl}</td><td onclick="verwijder(${el.id})"> x </td></tr>`)
+		document.querySelector("#tabelInhoudOefeningen").innerHTML = tabelInhoudOefeningen
+	}
+    
+    const laad = async () => {
+		await LaadOefeningenTabel()
+		toon()
+		
+	}
+
+    const LoginFunction = () => {
+        document.getElementById("navbar").style.visibility = "visible";
+        document.getElementById("LoginScreen").style.visibility = "hidden";
+        document.getElementById("navfooter").style.visibility = "visible";
+    } 
+    const LaadHome = () => {
+
+    }
+    const LaadGebruikers = () => {
+        document.getElementById("GebruikerCreateContainer").style.visibility = "visible";
+        document.getElementById("OefeningCreateContainer").style.visibility = "hidden";
+        document.getElementById("TableGebruikers").style.visibility = "visible";
+        document.getElementById("TableOefeningen").style.visibility = "hidden";
+    }
+    const LaadOefeningen = () => {
+        document.getElementById("GebruikerCreateContainer").style.visibility = "hidden";
+        document.getElementById("OefeningCreateContainer").style.visibility = "visible";
+        document.getElementById("TableGebruikers").style.visibility = "hidden";
+        document.getElementById("TableOefeningen").style.visibility = "visible";
+        laad()
+    }
+    const LaadPrestaties = () => {
+
+    }
+    
+
+    const CreateGebruikers = () => {
+
+    }
+    const CreateOefeningen = async () => {
+        const oefeningnaam = document.querySelector("#oefeningnaam").value;
+        const beschrijving = document.querySelector("#beschrijving").value;
+        const jsonstring = { "oefeningnaam": oefeningnaam, "beschrijving": beschrijving }
+		console.log("voeg toe: ", jsonstring)
+        const respons = await axios.post(apiOefeningen, jsonstring,)
+        console.log('status code', respons.status)
+        document.querySelector("#naam").value = ''
+		document.querySelector("#productiejaar").value = ''
+		document.querySelector("#verkoopaantal").value = ''
+		await laad()
+    }
+</script>
+</html>
