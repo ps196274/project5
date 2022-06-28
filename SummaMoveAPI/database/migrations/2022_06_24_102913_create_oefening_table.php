@@ -15,10 +15,10 @@ class CreateOefeningTable extends Migration
     {
         Schema::create('oefeningen', function (Blueprint $table) {
             $table->id();
-            $table->text('naam_nl',);
-            $table->text('beschrijving_nl',);
-            $table->text('naam_en',);
-            $table->text('beschrijving_en',);
+            $table->text('naam_nl',)->nullable();
+            $table->text('beschrijving_nl',)->nullable();
+            $table->text('naam_en',)->nullable();
+            $table->text('beschrijving_en',)->nullable();
         });
     }
 
