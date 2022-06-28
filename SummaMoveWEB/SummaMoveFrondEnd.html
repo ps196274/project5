@@ -47,8 +47,7 @@
             </table>
         </div>
         <div id="GebruikerCreateContainer" style="visibility: hidden;">
-            <p>Gebruikersnaam</p>
-            <input><br><br>
+            <label>Gebruikersnaam: <input type="text" id="gebruikersnaam"></label><br><br>
             <button onclick="CreateGebruikers()">Aanmaken</button>
         </div>
         <div id="OefeningCreateContainer" style="visibility: hidden;">
@@ -68,25 +67,31 @@
 	const apiOefeningen = apiBasis + "oefeningen/"
 	const apiLogin = apiBasis + "login/"
 
+    let gebruikers = []
     let oefeningen = []
-    let json = null
     let access_token = undefined
 
+    const LaadGebruikersTabel = async () => {
+		console.log('Laad gegevens')
+		const response = await axios.get(apiGebruikers)
+		json = await response.data
+		//access_token = json.access_token	
+	}
     const LaadOefeningenTabel = async () => {
 		console.log('Laad gegevens')
 		const response = await axios.get(apiOefeningen)
 		json = await response.data
 		//access_token = json.access_token	
 	}
-    const toon = () => {
+    const toonOefeningen = () => {
 		let tabelInhoudOefeningen = ''
-		json.map(el => tabelInhoudOefeningen += `<tr><td>${el.id}</td><td>${el.naam_nl}</td><td>${el.beschrijving_nl}</td><td onclick="verwijder(${el.id})"> x </td></tr>`)
+		json.map(el => tabelInhoudOefeningen += `<tr><td>${el.id}</td><td>${el.naam_nl}</td><td>${el.beschrijving_nl}</td><td onclick="verwijder(${el.id})"> X </td></tr>`)
 		document.querySelector("#tabelInhoudOefeningen").innerHTML = tabelInhoudOefeningen
 	}
     
-    const laad = async () => {
+    const laadFunctieOefeningen = async () => {
 		await LaadOefeningenTabel()
-		toon()
+		toonOefeningen()
 		
 	}
 
@@ -109,7 +114,7 @@
         document.getElementById("OefeningCreateContainer").style.visibility = "visible";
         document.getElementById("TableGebruikers").style.visibility = "hidden";
         document.getElementById("TableOefeningen").style.visibility = "visible";
-        laad()
+        laadFunctieOefeningen()
     }
     const LaadPrestaties = () => {
 
@@ -126,10 +131,9 @@
 		console.log("voeg toe: ", jsonstring)
         const respons = await axios.post(apiOefeningen, jsonstring,)
         console.log('status code', respons.status)
-        document.querySelector("#naam").value = ''
-		document.querySelector("#productiejaar").value = ''
-		document.querySelector("#verkoopaantal").value = ''
-		await laad()
+        document.querySelector("#oefeningnaam").value = ''
+		document.querySelector("#beschrijving").value = ''
+		await laadFunctieOefeningen()
     }
 </script>
 </html>
