@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,34 +17,54 @@ class oefeningenSeeder extends Seeder
     {
         DB::table('oefeningen')->insert([
             [
-            'name' => 'Squat',
+                'name' => 'Squat',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::tomorrow(),
             ],
             [
-            'name' => 'Push Up',
+                'name' => 'Push Up',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::tomorrow(),
             ],
             [
-            'name' => 'Dip',
+                'name' => 'Dip',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::tomorrow(),
             ],
             [
-            'name' => 'Plank',
+                'name' => 'Plank',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::tomorrow(),
             ],
             [
-            'name' => 'paardentrap',
+                'name' => 'paardentrap',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::tomorrow(),
             ],
             [
-            'name' => 'Mountain Climber',
+                'name' => 'Mountain Climber',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::tomorrow(),
             ],
             [
-            'name' => 'Burpee',
+                'name' => 'Burpee',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::tomorrow(),
             ],
             [
-            'name' => 'Lunge',
+                'name' => 'Lunge',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::tomorrow(),
             ],
             [
-            'name' => 'Wall sit',
+                'name' => 'Wall sit',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::tomorrow(),
             ],
             [
-            'name' => 'Crunch',
+                'name' => 'Crunch',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::tomorrow(),
             ],
         ]);
     }

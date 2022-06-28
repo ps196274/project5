@@ -14,9 +14,6 @@ class OefeningenController extends Controller
      */
     public function index()
     {
-        if ($request->has('naam'))
-            return oefening::where('name', 'like', '%'.$request->name.'%')->get();
-        if ($request->has('sort')) return oefening::orderBy($request->sort)->get();
         return oefening::All();
     }
 
