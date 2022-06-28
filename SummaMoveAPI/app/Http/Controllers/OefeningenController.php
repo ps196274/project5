@@ -24,7 +24,7 @@ class OefeningenController extends Controller
      */
     public function create()
     {
-        //
+        return oefening::create($request->all());
     }
 
     /**
