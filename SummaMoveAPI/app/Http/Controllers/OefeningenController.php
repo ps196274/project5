@@ -81,6 +81,6 @@ class OefeningenController extends Controller
      */
     public function destroy($id)
     {
-        $oefening->delete();
+        $oefeningen->delete();
     }
 }
