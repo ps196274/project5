@@ -40,8 +40,10 @@
             <table id="InhoudTabelOefeningen">
                 <tr>
                     <th>Id</th>
-                    <th>Oefeningnaam</th>
-                    <th>Beschrijving</th>
+                    <th>Oefeningnaam Nederland</th>
+                    <th>Oefeningnaam Engels</th>
+                    <th>Beschrijving Nederlands</th>
+                    <th>Beschrijving Engels</th>
                 </tr>
                 <tbody id="tabelInhoudOefeningen" />
             </table>
@@ -146,7 +148,7 @@
 		const respons = await axios.delete(apiOefeningen + id)
 		console.log('status code', respons.status)
 		//access_token = await respons.data.access_token
-		await laad()
+		await laadFunctieOefeningen()
 		console.log(apiOefeningen + id)
 	}
 </script>
