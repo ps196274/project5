@@ -87,7 +87,7 @@
 	}
     const toonOefeningen = () => {
 		let tabelInhoudOefeningen = ''
-		json.map(el => tabelInhoudOefeningen += `<tr><td>${el.id}</td><td>${el.naam_nl}</td><td>${el.naam_en}</td><td>${el.beschrijving_nl}</td><td>${el.beschrijving_en}</td><td onclick="verwijder(${el.id})"> X </td></tr>`)
+		json.map(el => tabelInhoudOefeningen += `<tr><td>${el.id}</td><td>${el.naam_nl}</td><td>${el.naam_en}</td><td>${el.beschrijving_nl}</td><td>${el.beschrijving_en}</td><td onclick="verwijderOefeningen(${el.id})"> X </td></tr>`)
 		document.querySelector("#tabelInhoudOefeningen").innerHTML = tabelInhoudOefeningen
 	}
     
@@ -141,5 +141,13 @@
 		document.querySelector("#beschrijvingEN").value = ''
 		await laadFunctieOefeningen()
     }
+    const verwijderOefeningen = async (id) => {
+		console.log("verwijder: ", id)
+		const respons = await axios.delete(apiOefeningen + id)
+		console.log('status code', respons.status)
+		//access_token = await respons.data.access_token
+		await laad()
+		console.log(apiOefeningen + id)
+	}
 </script>
 </html>
