@@ -51,9 +51,11 @@
             <button onclick="CreateGebruikers()">Aanmaken</button>
         </div>
         <div id="OefeningCreateContainer" style="visibility: hidden;">
-            <label>Oefeningnaam: <input type="text" id="oefeningnaam"></label><br><br>
-            <label>Beschrijving:  <input type="text" id="beschrijving"></label><br><br>
-            <button onclick="CreateOefeningen()">Aanmaken</button>
+            <label>Oefeningnaam Nederlands: <input type="text" id="oefeningnaamNL" style="float: right;"></label><br><br>
+            <label>Beschrijving Nederlands:  <input type="text" id="beschrijvingNL" style="float: right;"></label><br><br>
+            <label>Oefeningnaam Engels: <input type="text" id="oefeningnaamEN" style="float: right;"></label><br><br>
+            <label>Beschrijving Engels:  <input type="text" id="beschrijvingEN" style="float: right;"></label><br><br>
+            <button onclick="CreateOefeningen()" style="float: right;">Aanmaken</button>
         </div>
         <div id="navfooter" style="visibility: hidden;">
             <footer>@Ruben van Gastel, Maikel Colin, Ivan Hau, Shuceyb Malin</footer>
@@ -85,7 +87,7 @@
 	}
     const toonOefeningen = () => {
 		let tabelInhoudOefeningen = ''
-		json.map(el => tabelInhoudOefeningen += `<tr><td>${el.id}</td><td>${el.naam_nl}</td><td>${el.beschrijving_nl}</td><td onclick="verwijder(${el.id})"> X </td></tr>`)
+		json.map(el => tabelInhoudOefeningen += `<tr><td>${el.id}</td><td>${el.naam_nl}</td><td>${el.naam_en}</td><td>${el.beschrijving_nl}</td><td>${el.beschrijving_en}</td><td onclick="verwijder(${el.id})"> X </td></tr>`)
 		document.querySelector("#tabelInhoudOefeningen").innerHTML = tabelInhoudOefeningen
 	}
     
@@ -125,14 +127,18 @@
 
     }
     const CreateOefeningen = async () => {
-        const oefeningnaam = document.querySelector("#oefeningnaam").value;
-        const beschrijving = document.querySelector("#beschrijving").value;
-        const jsonstring = { "oefeningnaam": oefeningnaam, "beschrijving": beschrijving }
+        const oefeningnaamNL = document.querySelector("#oefeningnaamNL").value;
+        const beschrijvingNL = document.querySelector("#beschrijvingNL").value;
+        const oefeningnaamEN = document.querySelector("#oefeningnaamEN").value;
+        const beschrijvingEN = document.querySelector("#beschrijvingEN").value;
+        const jsonstring = { "naam_nl": oefeningnaamNL, "beschrijving_nl": beschrijvingNL, "naam_en": oefeningnaamEN, "beschrijving_en": beschrijvingEN }
 		console.log("voeg toe: ", jsonstring)
         const respons = await axios.post(apiOefeningen, jsonstring,)
         console.log('status code', respons.status)
-        document.querySelector("#oefeningnaam").value = ''
-		document.querySelector("#beschrijving").value = ''
+        document.querySelector("#oefeningnaamNL").value = ''
+		document.querySelector("#beschrijvingNL").value = ''
+        document.querySelector("#oefeningnaamEN").value = ''
+		document.querySelector("#beschrijvingEN").value = ''
 		await laadFunctieOefeningen()
     }
 </script>

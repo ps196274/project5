@@ -18,10 +18,10 @@ class oefeningenSeeder extends Seeder
         DB::table('oefeningen')->insert([
             [
                 'naam_nl' => 'Squat',
-                'beschrijving_nl' =>'1.	Ga liggen op de grond
-2.	Zorg ervoor dat je handen op de grond zitten en je tenen
-3.	Zak langzaam omlaag en raak met je borst de grond aan
-4.	Ga weer omhoog en herhaal dit 5 keer
+                'beschrijving_nl' =>'Squat: <br> 1.	Ga liggen op de grond
+<br>2.	Zorg ervoor dat je handen op de grond zitten en je tenen
+<br>3.	Zak langzaam omlaag en raak met je borst de grond aan
+<br>4.	Ga weer omhoog en herhaal dit 5 keer
 ',
                 'naam_en' => 'Squat',
                 'beschrijving_en' =>'1.	Stand up straight.
