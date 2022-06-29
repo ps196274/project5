@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\oefening;
+use App\Models\Oefening;
 use Illuminate\Http\Request;
 
 class OefeningenController extends Controller
