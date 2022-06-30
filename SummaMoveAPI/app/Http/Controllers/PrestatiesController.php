@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Prestatie;
 use Illuminate\Http\Request;
 
 class PrestatiesController extends Controller
@@ -13,7 +14,7 @@ class PrestatiesController extends Controller
      */
     public function index()
     {
-        //
+        return prestatie::All();
     }
 
     /**
@@ -23,7 +24,7 @@ class PrestatiesController extends Controller
      */
     public function create()
     {
-        //
+        return prestatie::create($request->all());
     }
 
     /**
@@ -34,7 +35,7 @@ class PrestatiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return prestatie::create($request->all());
     }
 
     /**
@@ -43,9 +44,9 @@ class PrestatiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Prestatie $prestatie)
     {
-        //
+        return $prestatie;
     }
 
     /**
@@ -68,7 +69,8 @@ class PrestatiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $prestaties->update($request->all());
+        return $prestaties;
     }
 
     /**
@@ -77,8 +79,8 @@ class PrestatiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Prestatie $prestatie)
     {
-        //
+        $prestatie->delete();
     }
 }
