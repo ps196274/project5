@@ -15,12 +15,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/register', [AuthenticationController::class, 'register']);
 Route::post('/login', [AuthenticationController::class, 'login']);
+
+Route::apiResource('oefeningen', OefeningenController::class)->parameters(['oefeningen' => 'oefening']);
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('profile', function(Request $request) {
         return auth()->user();
     });
+
+// PROTECTED ROUTES
 //    Route::apiResource('drivers', DriverController::class);
-    Route::apiResource('oefeningen', OefeningenController::class)->parameters(['oefeningen' => 'oefening']);
 //    Route::apiResource('constructors', ConstructorController::class)->parameters(['constructors' => 'constructor'])->only(['index', 'show']);
 
 //    Route::get('constructors/{id}/drivers', [DriverController::class, 'indexFunctie']);
