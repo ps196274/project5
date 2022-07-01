@@ -68,7 +68,7 @@
             <label>Beschrijving Nederlands:  <textarea id="EditbeschrijvingNL" style="float: right;"></textarea></label><br><br>
             <label>Oefeningnaam Engels: <input type="text" id="EditoefeningnaamEN" style="float: right;"></label><br><br>
             <label>Beschrijving Engels:  <textarea id="EditbeschrijvingEN" style="float: right;"></textarea></label><br><br>
-            <button onclick="AanpassenOefeningenLaad()"></button>
+            <button onclick="AanpassenOefeningenLaad()">Aanpassen</button>
         </div>
         <div id="navfooter" style="visibility: hidden;">
             <footer>@Ruben van Gastel, Maikel Colin, Ivan Hau, Shuceyb Malin</footer>
@@ -114,21 +114,24 @@
         document.getElementById("navbar").style.visibility = "visible";
         document.getElementById("LoginScreen").style.visibility = "hidden";
         document.getElementById("navfooter").style.visibility = "visible";
+        document.getElementById("OefeningEditContainer").style.visibility = "hidden";
     } 
     const LaadHome = () => {
-
+        document.getElementById("OefeningEditContainer").style.visibility = "hidden";
     }
     const LaadGebruikers = () => {
         document.getElementById("GebruikerCreateContainer").style.visibility = "visible";
         document.getElementById("OefeningCreateContainer").style.visibility = "hidden";
         document.getElementById("TableGebruikers").style.visibility = "visible";
         document.getElementById("TableOefeningen").style.visibility = "hidden";
+        document.getElementById("OefeningEditContainer").style.visibility = "hidden";
     }
     const LaadOefeningen = () => {
         document.getElementById("GebruikerCreateContainer").style.visibility = "hidden";
         document.getElementById("OefeningCreateContainer").style.visibility = "visible";
         document.getElementById("TableGebruikers").style.visibility = "hidden";
         document.getElementById("TableOefeningen").style.visibility = "visible";
+        document.getElementById("OefeningEditContainer").style.visibility = "hidden";
         laadFunctieOefeningen()
     }
     const LaadPrestaties = () => {
