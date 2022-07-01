@@ -8,7 +8,7 @@ const App = ({ navigation }) => {
 
   const getApi = async () => {
      try {
-      const response = await fetch('http://192.168.178.43/api/oefeningen');
+      const response = await fetch('http://127.0.0.1:8000/api/oefeningen');
       const json = await response.json();
       setData(json);
     } catch (error) {
