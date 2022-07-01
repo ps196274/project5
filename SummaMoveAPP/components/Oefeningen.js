@@ -8,7 +8,7 @@ const App = ({ navigation }) => {
 
   const getApi = async () => {
      try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/users');
+      const response = await fetch('http://192.168.178.43/api/oefeningen');
       const json = await response.json();
       setData(json);
     } catch (error) {
@@ -30,8 +30,8 @@ const App = ({ navigation }) => {
       data={data}
       keyExtractor={({ id }, index) => id}
       renderItem={({ item }) => <Text>
-      {item.name}{"\n"}        
-      {item.email}{"\n"} </Text>
+      {item.naam_nl}{"\n"}        
+      {item.beschrijving_nl}{"\n"} </Text>
       }
     />
       )}
