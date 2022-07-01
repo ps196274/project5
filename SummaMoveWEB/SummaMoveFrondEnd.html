@@ -21,9 +21,11 @@
 
         <div id="LoginScreen" style="visibility: visible;">
             <div>
-                <p>Gebruikersnaam<br><input id="gebruikersnaam"></p>
-                <p>Wachtwoord<br><input id="wachtwoord"></p>
-                <button onclick="LoginFunction()">Login</button>
+                <form action="javascript:void(0);">
+                    <input type="text" placeholder="gebruikersnaam" id="name">
+                    <input type="password" placeholder="wachtwoord" id="password" required>
+                    <button type="submit" onclick="LoginFunction()">Login</button>
+                </form>
             </div>
         </div>
         
@@ -61,6 +63,13 @@
             <label>Beschrijving Engels:  <input type="text" id="beschrijvingEN" style="float: right;"></label><br><br>
             <button onclick="CreateOefeningen()" style="float: right;">Aanmaken</button>
         </div>
+        <div id="OefeningEditContainer" style="visibility: hidden;">
+            <label>Oefeningnaam Nederlands: <input type="text" id="EditoefeningnaamNL" style="float: right;"></label><br><br>
+            <label>Beschrijving Nederlands:  <textarea id="EditbeschrijvingNL" style="float: right;"></textarea></label><br><br>
+            <label>Oefeningnaam Engels: <input type="text" id="EditoefeningnaamEN" style="float: right;"></label><br><br>
+            <label>Beschrijving Engels:  <textarea id="EditbeschrijvingEN" style="float: right;"></textarea></label><br><br>
+            <button onclick="AanpassenOefeningenLaad()"></button>
+        </div>
         <div id="navfooter" style="visibility: hidden;">
             <footer>@Ruben van Gastel, Maikel Colin, Ivan Hau, Shuceyb Malin</footer>
           </div>
@@ -91,7 +100,7 @@
 	}
     const toonOefeningen = () => {
 		let tabelInhoudOefeningen = ''
-		json.map(el => tabelInhoudOefeningen += `<tr><td>${el.id}</td><td>${el.naam_nl}</td><td>${el.naam_en}</td><td>${el.beschrijving_nl}</td><td>${el.beschrijving_en}</td><td><button>Aanpassen</button></td><td onclick="verwijderOefeningen(${el.id})"> X </td></tr>`)
+		json.map(el => tabelInhoudOefeningen += `<tr><td>${el.id}</td><td>${el.naam_nl}</td><td>${el.naam_en}</td><td>${el.beschrijving_nl}</td><td>${el.beschrijving_en}</td><td><button onclick="ToonAanpassenOefeningen(${el.id})">Aanpassen</button></td><td onclick="verwijderOefeningen(${el.id})"> X </td></tr>`)
 		document.querySelector("#tabelInhoudOefeningen").innerHTML = tabelInhoudOefeningen
 	}
     
@@ -143,6 +152,31 @@
 		document.querySelector("#beschrijvingNL").value = ''
         document.querySelector("#oefeningnaamEN").value = ''
 		document.querySelector("#beschrijvingEN").value = ''
+		await laadFunctieOefeningen()
+    }
+    const ToonAanpassenOefeningen = async (id) => {
+        document.getElementById("OefeningEditContainer").style.visibility = "visible";
+        console.log(id)
+        const respons = await axios.get(apiOefeningen + id)
+        console.log('status code', respons.status)
+        EditoefeningnaamNL.value = respons.data.naam_nl
+        EditbeschrijvingNL.value = respons.data.beschrijving_nl
+        EditoefeningnaamEN.value = respons.data.naam_en
+        EditbeschrijvingEN.value = respons.data.beschrijving_en
+    }
+    const AanpassenOefeningenLaad = async (id) => {
+        const oefeningnaamNL = document.querySelector("#EditoefeningnaamNL").value;
+        const beschrijvingNL = document.querySelector("#EditbeschrijvingNL").value;
+        const oefeningnaamEN = document.querySelector("#EditoefeningnaamEN").value;
+        const beschrijvingEN = document.querySelector("#EditbeschrijvingEN").value;
+        const jsonstring = { "naam_nl": oefeningnaamNL, "beschrijving_nl": beschrijvingNL, "naam_en": oefeningnaamEN, "beschrijving_en": beschrijvingEN }
+        console.log("pas aan met: ", jsonstring)
+        const respons = await axios.post(apiOefeningen + id, jsonstring,)
+        console.log('status code', respons.status)
+        document.querySelector("#EditoefeningnaamNL").value = ''
+		document.querySelector("#EditbeschrijvingNL").value = ''
+        document.querySelector("#EditoefeningnaamEN").value = ''
+		document.querySelector("#EditbeschrijvingEN").value = ''
 		await laadFunctieOefeningen()
     }
     const verwijderOefeningen = async (id) => {
