@@ -82,6 +82,7 @@
 	const apiOefeningen = apiBasis + "oefeningen/"
 	const apiLogin = apiBasis + "login/"
 
+    let SelectedID = undefined
     let gebruikers = []
     let oefeningen = []
     let access_token = undefined
@@ -166,20 +167,21 @@
         EditbeschrijvingNL.value = respons.data.beschrijving_nl
         EditoefeningnaamEN.value = respons.data.naam_en
         EditbeschrijvingEN.value = respons.data.beschrijving_en
+        SelectedID = id
     }
     const AanpassenOefeningenLaad = async (id) => {
-        const oefeningnaamNL = document.querySelector("#EditoefeningnaamNL").value;
-        const beschrijvingNL = document.querySelector("#EditbeschrijvingNL").value;
-        const oefeningnaamEN = document.querySelector("#EditoefeningnaamEN").value;
-        const beschrijvingEN = document.querySelector("#EditbeschrijvingEN").value;
-        const jsonstring = { "naam_nl": oefeningnaamNL, "beschrijving_nl": beschrijvingNL, "naam_en": oefeningnaamEN, "beschrijving_en": beschrijvingEN }
-        console.log("pas aan met: ", jsonstring)
-        const respons = await axios.post(apiOefeningen + id, jsonstring,)
+        const EditoefeningnaamNL = document.querySelector("#EditoefeningnaamNL").value;
+        const EditbeschrijvingNL = document.querySelector("#EditbeschrijvingNL").value;
+        const EditoefeningnaamEN = document.querySelector("#EditoefeningnaamEN").value;
+        const EditbeschrijvingEN = document.querySelector("#EditbeschrijvingEN").value;
+        const jsonstring = { "naam_nl": EditoefeningnaamNL, "beschrijving_nl": EditbeschrijvingNL, "naam_en": EditoefeningnaamEN, "beschrijving_en": EditbeschrijvingEN }
+		console.log("voeg toe: ", jsonstring)
+        const respons = await axios.put(apiOefeningen + SelectedID, jsonstring,)
         console.log('status code', respons.status)
         document.querySelector("#EditoefeningnaamNL").value = ''
 		document.querySelector("#EditbeschrijvingNL").value = ''
         document.querySelector("#EditoefeningnaamEN").value = ''
-		document.querySelector("#EditbeschrijvingEN").value = ''
+		document.querySelector("#EditbeschrijvingEN").value = '' 
 		await laadFunctieOefeningen()
     }
     const verwijderOefeningen = async (id) => {
