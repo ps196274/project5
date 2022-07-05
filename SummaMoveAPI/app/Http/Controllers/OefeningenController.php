@@ -57,7 +57,7 @@ class OefeningenController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -67,10 +67,10 @@ class OefeningenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Oefening $oefeningen)
+    public function update(Request $request, $id)
     {
-        $oefeningen->update($request->all());
-        return $oefeningen;
+        $oefeningen = Oefening::find($id);
+        $oefeningen = $oefeningen->update($request->all());   
     }
 
     /**
