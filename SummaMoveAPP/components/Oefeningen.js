@@ -11,15 +11,22 @@ function App({ navigation }) {
   const {t, i18n} = useTranslation();
     
   const [currentLanguage,setLanguage] =useState('nl');
+  const [oefeningLanguage,setoefeningLanguage] =useState('nl');
   
   const changeLanguage = value => {
-    setBeschrijving(value);
     langoeg =value;
+    setoefeningLanguage(value)
     i18n
       .changeLanguage(value)
+     
+
       .then(() => setLanguage(value))
       .catch(err => console.log(err));
+
+      chngtext(value);
   };
+  const chngtext = (value)=>{
+  }
 
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -39,7 +46,7 @@ function App({ navigation }) {
   useEffect(() => {
     getApi();
   }, []);
-if (langoeg == "nl"){
+if (oefeningLanguage == "nl"){
   return (
     <View style={styles.container}>
       <Text style={styles.titel}>{"\n"}  {t('oefeningenlist')}{"\n"}  {"\n"}  </Text>
@@ -63,7 +70,7 @@ if (langoeg == "nl"){
     </View>    
   );
 }
-else {
+else if (oefeningLanguage == "en") {
   return (
     <View style={styles.container}>
       <Text style={styles.titel}>{"\n"}  {t('oefeningenlist')}{"\n"}  {"\n"}  </Text>
