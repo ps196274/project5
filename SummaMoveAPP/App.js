@@ -10,19 +10,32 @@ import LoadHelp from './components/Help';
 import LoadOverons from './components/Overons';
 import LoadLogin from './components/Login';
 import LoadPrestaties from './components/Prestaties';
+import {useTranslation} from 'react-i18next';
+import './components/i18n/i18n';
+import React, { useEffect, useState } from 'react';
 
 const Tab = createMaterialBottomTabNavigator();
 
 const Stack = createNativeStackNavigator();
 
 const Tabnav = () => {
+  const {t, i18n} = useTranslation();
+  
+  const [currentLanguage,setLanguage] =useState('en');
+  
+  const changeLanguage = value => {
+    i18n
+      .changeLanguage(value)
+      .then(() => setLanguage(value))
+      .catch(err => console.log(err));
+  };
   return (
     <Tab.Navigator>
       <Tab.Screen
         name="oefeningen"
         component={LoadOefening}  
         options={{
-          tabBarLabel: 'Oefeningen',
+          tabBarLabel: t('oefeningen'),
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="directions-walk" size={26} color={color} />
           ),
@@ -32,7 +45,7 @@ const Tabnav = () => {
         name="Prestaties"
         component={LoadLogin}  
         options={{
-          tabBarLabel: 'Prestaties',
+          tabBarLabel: t('prestatie'),
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="multiline-chart" size={26} color={color} />
           ),
@@ -42,7 +55,7 @@ const Tabnav = () => {
         name="overons"
         component={LoadOverons}
         options={{ 
-          tabBarLabel: 'Over ons',
+          tabBarLabel: t('overons'),
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="groups" size={26} color={color} />
           ),

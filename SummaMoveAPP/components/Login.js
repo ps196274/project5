@@ -1,20 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput,Pressable } from 'react-native';
+import {useTranslation} from 'react-i18next';
+import React, { useEffect, useState } from 'react';
 
+import './i18n/i18n';
 function App({ navigation }) {
+  const {t, i18n} = useTranslation();
+  
+  const [currentLanguage,setLanguage] =useState('en');
+  
+  const changeLanguage = value => {
+    i18n
+      .changeLanguage(value)
+      .then(() => setLanguage(value))
+      .catch(err => console.log(err));
+  };
+
     return (
     <View style={styles.container}>
-      <Text style={styles.tekst}>Meld je aan om je prestaties te kunnen bekijken{"\n"}</Text>
-      <TextInput style={styles.input} placeholder="Gebruikersnaam"></TextInput>
-      <TextInput secureTextEntry={true} style={styles.input} placeholder="Wachtwoord"></TextInput>
+      <Text style={styles.tekst}> {t('titlelogin')}</Text>
+      <TextInput style={styles.input} placeholder={t('gebruikersnaam')}></TextInput>
+      <TextInput secureTextEntry={true} style={styles.input} placeholder={t('wachtwoord')}></TextInput>
       <Text>{"\n"}</Text>
       <StatusBar style="auto" />
       <View style={styles.login}>
-        <Button style={styles.login} onPress={() => navigation.navigate('LoadPrestaties')} title="Login"/>
+        <Button style={styles.login} onPress={() => navigation.navigate('LoadPrestaties')} title={t('login')}/>
       </View>
       <View style={styles.login}>
-        <Button style={styles.login} onPress={() => navigation.navigate('LoadPrestaties')} title="Maak een acount aan"/>
+        <Button style={styles.login} onPress={() => navigation.navigate('LoadPrestaties')} title={t('account')}/>
       </View>
+      <Pressable onPress={() => changeLanguage('en')} >
+          <Text>EN</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => changeLanguage('nl')}>
+          <Text>NL</Text>
+        </Pressable>
     </View>
   );
 }
